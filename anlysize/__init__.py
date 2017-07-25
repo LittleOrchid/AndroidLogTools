@@ -1,1 +1,1 @@
-from .core import scan_analysis_main_thread
+from .core import ScanLogTool
