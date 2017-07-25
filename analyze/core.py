@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from analyze.methods import helpers
+from analyze.methods import log_helpers
 from analyze.methods import tagtools
 from config import Config
 
@@ -14,10 +14,14 @@ class ScanLogTool:
 
     def scan_log_analysis(self):
         with open(self.log_path) as log_file:
-            tag_sets = tagtools.TestTools(self.pattern, self.scan_config)
+            results = []
+            tag_tools = tagtools.TestTools(self.pattern, self.scan_config)
             for line in log_file:
-                if not helpers.check_log_line_from_main(line, self.pattern):
+                if not log_helpers.check_log_line_from_main(line, self.pattern):
                     continue
-                tag_sets.parse_log_line(line)
-            return tag_sets.m_tag_list
+                parse_result = tag_tools.parse_log_line(line)
+                if parse_result:
+                    results.append(tag_tools.m_tag_list)
+                    tag_tools = tagtools.TestTools(self.pattern, self.scan_config)
+            return results
 

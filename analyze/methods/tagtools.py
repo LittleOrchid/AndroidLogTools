@@ -1,28 +1,38 @@
 # -*- coding: utf-8 -*-
-import helpers
+import log_helpers
 import string_utils
 from analyze.config import Config
+from format_out import PairList
 
 
 class TestTools:
 
     def __init__(self, pattern, config):
-        self.m_tag_list = {Config.IN: [], Config.ON_CREATE: [], Config.ON_RESUME: [],
-                           Config.ON_PAUSE: [], Config.ON_DESTROY: []}
+        self.m_tag_list = PairList()
         self.pattern = pattern
         self.config = config
         self.cur_phase = Config.NONE
+        self.cur_phase_list = []
 
     def parse_log_line(self, origin_data):
         if not origin_data:
-            return
+            return False
         phase_code = self.log_appear_phase(origin_data)
-        if cmp(phase_code, Config.NONE) != 0 and cmp(phase_code, Config.NORM) != 0:
+        if cmp(self.cur_phase, Config.OUT) == 0:
+            self.m_tag_list.append((Config.OUT, []))
+            return True
+        if cmp(phase_code, Config.NONE) == 0:
+            return False
+        if cmp(phase_code, Config.NORM) != 0:
+            if cmp(self.cur_phase, Config.NONE) != 0:
+                self.m_tag_list.append((self.cur_phase, self.cur_phase_list))
             self.cur_phase = phase_code
-        tag = helpers.get_tag(origin_data, self.pattern)
-        if not tag or cmp(self.cur_phase, Config.NONE) == 0 or cmp(self.cur_phase, Config.OUT) == 0:
-            return
-        self.m_tag_list[self.cur_phase].append(tag)
+            self.cur_phase_list = []
+        tag = log_helpers.get_tag(origin_data, self.pattern)
+        if not tag:
+            return False
+        self.cur_phase_list.append(tag)
+        return False
 
     def log_appear_phase(self, origin_data):
         # 判断日志出现的phase阶段
