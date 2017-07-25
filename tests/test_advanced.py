@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .context import anlysize
+from .context import analyze
 
 import unittest
 
@@ -9,7 +9,7 @@ class AdvancedTestSuite(unittest.TestCase):
     """Advanced test cases."""
 
     def test_thoughts(self):
-        self.assertIsNone(anlysize.hmm())
+        self.assertIsNone(analyze.hmm())
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from anlysize.methods import helpers
-from anlysize.methods import tagtools
+from analyze.methods import helpers
+from analyze.methods import tagtools
 from config import Config
 
 

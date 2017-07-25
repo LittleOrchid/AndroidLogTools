@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'anlysize'
+project = u'analyze'
 copyright = u'2012, Kenneth Reitz'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -183,7 +183,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'anlysize.tex', u'anlysize Documentation',
+  ('index', 'analyze.tex', u'analyze Documentation',
    u'Kenneth Reitz', 'manual'),
 ]
 
@@ -213,7 +213,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'anlysize', u'anlysize Documentation',
+    ('index', 'analyze', u'analyze Documentation',
      [u'Kenneth Reitz'], 1)
 ]
 
@@ -227,8 +227,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'anlysize', u'anlysize Documentation',
-   u'Kenneth Reitz', 'anlysize', 'One line description of project.',
+  ('index', 'analyze', u'analyze Documentation',
+   u'Kenneth Reitz', 'analyze', 'One line description of project.',
    'Miscellaneous'),
 ]
 

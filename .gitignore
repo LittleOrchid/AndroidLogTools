@@ -1,2 +1,6 @@
 .DS_Store
 .idea/
+analyze/*.pyc
+an
+tests/*.pyc
+analyse/methods/*.pyc
