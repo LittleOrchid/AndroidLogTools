@@ -10,6 +10,15 @@ class Config:
     ON_DESTROY = "onDestroy"
     OUT = "out"
     NORM = "norm"
+    tag_white_list = [
+                      # scan
+                      "[Scan]BaseScanFragment", "[Scan]ScanApplication", "[Scan]MonitorHandler",
+                      "[Scan]CouponWidgetView", "[Scan]ConfigUtils", "[Scan]MaScanTopView",
+                      "[Scan]BQCScanServiceImpl", "[Scan]AlipayLastLocationFinder", "[Scan]ScaleFinderView",
+                      "[Scan]ScanConfig", "[Scan]CenterMetroWidgetView",
+                      # ArPlatform
+                      "[ARPlatform]A3DRenderPresenter",
+                      ]
 
     def __init__(self, activity):
         self.activity = activity
@@ -22,4 +31,6 @@ class Config:
             "out": [activity + "|finish"]
         }
 
-
+    @staticmethod
+    def check_tag_white_list(tag):
+        return tag in Config.tag_white_list

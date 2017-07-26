@@ -14,7 +14,7 @@ class TestTools:
         self.cur_phase = Config.NONE
         self.cur_phase_list = []
 
-    def parse_log_line(self, origin_data):
+    def parse_log_line(self, line_num, origin_data):
         if not origin_data:
             return False
         phase_code = self.log_appear_phase(origin_data)
@@ -28,10 +28,12 @@ class TestTools:
                 self.m_tag_list.append((self.cur_phase, self.cur_phase_list))
             self.cur_phase = phase_code
             self.cur_phase_list = []
-        tag = log_helpers.get_tag(origin_data, self.pattern)
-        if not tag:
+        if cmp(self.cur_phase, Config.NONE) == 0:
             return False
-        self.cur_phase_list.append(tag)
+        tag = log_helpers.get_tag(origin_data, self.pattern)
+        if not tag or Config.check_tag_white_list(tag):
+            return False
+        self.add_tag_statistics(tag, line_num)
         return False
 
     def log_appear_phase(self, origin_data):
@@ -52,3 +54,12 @@ class TestTools:
         else:
             return Config.NORM
 
+    def add_tag_statistics(self, tag, line):
+        add_result = False
+        for (tag_key, line_list) in self.cur_phase_list:
+            if cmp(tag, tag_key) == 0:
+                line_list.append(line)
+                add_result = True
+                break
+        if not add_result:
+            self.cur_phase_list.append((tag, [line]))

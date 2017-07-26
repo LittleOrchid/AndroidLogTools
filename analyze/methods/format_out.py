@@ -42,6 +42,8 @@ def format_out(result, prefix='', step_num=0):
         format_tuple_out(result, prefix, step_num)
     elif isinstance(result, str):
         format_str_out(result, prefix, step_num)
+    elif isinstance(result, int):
+        format_int_out(result, prefix, step_num)
 
 
 def format_list_out(result_list, prefix='', step_num=0):
@@ -66,6 +68,12 @@ def format_str_out(result_str, prefix='', step_num=0):
     for index in range(0, step_num):
         prefix += '\t'
     print prefix+result_str
+
+
+def format_int_out(result_int, prefix='', step_num=0):
+    for index in range(0, step_num):
+        prefix += '\t'
+    print prefix+str(result_int)
 
 
 def format_map_list_out(result_set_list, key_order_list=None):
