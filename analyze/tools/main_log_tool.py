@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from analyze.methods import log_helpers
 from analyze.tools import tagtools
-from config import Config
+from analyze.config import Config
 
 
 class ScanLogTool:

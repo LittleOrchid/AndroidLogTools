@@ -3,4 +3,5 @@
 analyze/*.pyc
 an
 tests/*.pyc
-analyse/methods/*.pyc
+analyze/methods/*.pyc
+analyze/tools/*.pyc

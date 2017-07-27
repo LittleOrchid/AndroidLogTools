@@ -54,10 +54,18 @@ def string_contains_features(origin_data, features):
     return result
 
 
-def str_time_long(time_str):
-    # pattern: hh:mm:ss:ms
-    time_parts = time_str.split(':')
-    result = (int(time_parts[0])*3600+int(time_parts[1])*60+int(time_parts[2]))*1000+int(time_parts[3])
-    return result
+def str_time_long(time_str, time_pattern="hh:mm:ss:ms"):
+    if cmp(time_pattern, "hh:mm:ss:ms") == 0:
+        time_parts = time_str.split(':')
+        result = (int(time_parts[0])*3600+int(time_parts[1])*60+int(time_parts[2]))*1000+int(time_parts[3])
+        return result
+    elif cmp(time_pattern, "hh:mm:ss.ms") == 0:
+        time_parts = time_str.split(':')
+        result = int(time_parts[0]) * 3600 + int(time_parts[1]) * 60
+        ss_parts = time_parts[2].split('.')
+        result = (result + int(ss_parts[0])) * 1000 + int(ss_parts[1])
+        return result
+    else:
+        return 0
 
 

@@ -1,1 +1,1 @@
-from .core import ScanLogTool
+import config
