@@ -11,6 +11,14 @@ class Config:
     OUT = "out"
     NORM = "norm"
     tag_white_list = [
+                      # 框架
+                      "TrackIntegrator",
+                      "ActivityResumeService",
+                      "UseTimeHelper",
+                      "MonitorLocalReceiver",
+                      "DescriptionManager",
+                      # 吱口令
+                      "ShareTokenCheckReceiver",
                       # scan
                       "[Scan]BaseScanFragment", "[Scan]ScanApplication", "[Scan]MonitorHandler",
                       "[Scan]CouponWidgetView", "[Scan]ConfigUtils", "[Scan]MaScanTopView",
@@ -18,6 +26,7 @@ class Config:
                       "[Scan]ScanConfig", "[Scan]CenterMetroWidgetView",
                       # ArPlatform
                       "[ARPlatform]A3DRenderPresenter",
+
                       ]
 
     def __init__(self, activity):
