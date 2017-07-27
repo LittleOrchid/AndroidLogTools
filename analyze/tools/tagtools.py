@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import log_helpers
-import string_utils
+import analyze.methods.log_helpers
+import analyze.methods.string_utils
 from analyze.config import Config
-from format_out import PairList
+from analyze.methods.format_out import PairList
 
 
 class TestTools:
@@ -30,7 +30,7 @@ class TestTools:
             self.cur_phase_list = []
         if cmp(self.cur_phase, Config.NONE) == 0:
             return False
-        tag = log_helpers.get_tag(origin_data, self.pattern)
+        tag = analyze.methods.log_helpers.get_tag(origin_data, self.pattern)
         if not tag or Config.check_tag_white_list(tag):
             return False
         self.add_tag_statistics(tag, line_num)
@@ -41,15 +41,15 @@ class TestTools:
         self.config.activity
         if not origin_data:
             return Config.NONE
-        elif string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.IN]):
+        elif analyze.methods.string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.IN]):
             return Config.IN
-        elif string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.ON_CREATE]):
+        elif analyze.methods.string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.ON_CREATE]):
             return Config.ON_CREATE
-        elif string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.ON_RESUME]):
+        elif analyze.methods.string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.ON_RESUME]):
             return Config.ON_RESUME
-        elif string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.ON_PAUSE]):
+        elif analyze.methods.string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.ON_PAUSE]):
             return Config.ON_PAUSE
-        elif string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.OUT]):
+        elif analyze.methods.string_utils.string_contains_features(origin_data, self.config.scan_lifecycle_tag[Config.OUT]):
             return Config.OUT
         else:
             return Config.NORM

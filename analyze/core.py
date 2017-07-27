@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from analyze.methods import log_helpers
-from analyze.methods import tagtools
+from analyze.tools import tagtools
 from config import Config
 
 
